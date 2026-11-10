@@ -29,8 +29,9 @@ Personas: Café customer and kitchen staff member. Priorities: Must (6), Should 
 ### US-04 — Must
 **As a** customer, **I want** to submit an order with my name, **so that** the café can prepare the correct order.
 
-1. **Given** my order has an item and my name is entered, **when** I submit it, **then** I receive an order number and a Received status.
-2. **Given** my name is blank or my order is empty, **when** I submit it, **then** submission is blocked with a clear message.
+1. **Given** my order has an item and my name contains at least one non-space character, **when** I submit it, **then** I receive an order number and a Received status.
+2. **Given** my name is blank or contains only spaces, **when** I submit the order, **then** no order is created and the name field displays “Enter your name.”
+3. **Given** my order is empty, **when** I submit it, **then** no order is created and the form displays “Add at least one item.”
 
 ### US-05 — Must
 **As a** kitchen staff member, **I want** to view incoming orders, **so that** I can see what needs preparing.
@@ -42,47 +43,43 @@ Personas: Café customer and kitchen staff member. Priorities: Must (6), Should 
 **As a** kitchen staff member, **I want** to advance an order from Received to Preparing, **so that** I can show that work has started.
 
 1. **Given** an order is Received, **when** I choose Start preparing, **then** its status becomes Preparing.
-2. **Given** an order is already Ready, **when** I try to start preparing it, **then** the status stays Ready and the invalid change is rejected.
+2. **Given** an order is already Ready, **when** I choose Start preparing, **then** its status remains Ready and the kitchen board displays “Only Received orders can be started.”
 
 ### US-07 — Should
 **As a** kitchen staff member, **I want** to mark a Preparing order as Ready, **so that** customers can know when to collect it.
 
 1. **Given** an order is Preparing, **when** I choose Mark ready, **then** its status becomes Ready.
-2. **Given** an order is still Received, **when** I try to mark it Ready, **then** the system rejects the skipped step.
+2. **Given** an order is still Received, **when** I choose Mark ready, **then** its status remains Received and the kitchen board displays “Only Preparing orders can be marked ready.”
 
 ### US-08 — Could
 **As a** customer, **I want** to check my order status using its order number, **so that** I know when to collect my food.
 
-1. **Given** I enter a valid order number, **when** I request its status, **then** the current status is displayed.
-2. **Given** I enter an unknown or empty order number, **when** I request its status, **then** a helpful not-found or required-field message appears.
+1. **Given** I enter the order number assigned to an existing order, **when** I request its status, **then** the page displays that order’s number and exactly one current status: Received, Preparing or Ready.
+2. **Given** I enter an order number that does not match an existing order, **when** I request its status, **then** the page displays “Order not found.”
+3. **Given** the order number field is empty or contains only spaces, **when** I request a status, **then** no lookup is performed and the field displays “Enter an order number.”
 
 ## Reflection questions
 
 **1. Which story did you split into smaller stories, and why?**
-The initial broad idea, "As kitchen staff, I want to manage orders," was divided into US-05 (view incoming orders), US-06 (start preparing), and US-07 (mark ready). Each now has one clear behavior, can be developed independently, and has observable acceptance tests.
+No story was identified as too large in the INVEST review, so no story was split.
 
 **2. Which story was hardest to write acceptance criteria for? What made it hard?**
 US-06 was the hardest because status changes require defining both an allowed transition and a rejected transition. The criteria distinguish Received → Preparing from an invalid Ready → Preparing change.
 
-## AI review log
+## AI Log
 
-**Review prompt to paste into Copilot Chat:**
+The INVEST review found no stories too large. I accepted all four suggestions to make vague or underspecified acceptance outcomes observable and testable:
 
-> Here are my user stories for a Flask prototype. Check each one against INVEST and tell me which are too big, vague or not testable. Do not rewrite them; list problems only.
-
-**Review status:** Pending actual Copilot review. The notes below are a preliminary self-review, not Copilot output. Replace or supplement them with Copilot’s real feedback before submission.
-
-| Potential issue (self-review) | Decision | Reason |
+| Finding | Decision | Why the change improves testability |
 | --- | --- | --- |
-| “Manage orders” combines several tasks | Accept | Split into US-05, US-06 and US-07 for independent testing. |
-| Menu availability might depend on inventory integration | Reject for this prototype | A simple available/sold-out flag is enough for a testable mockup. |
-| Status lookup could expand into notifications | Reject scope expansion | US-08 is deliberately limited to a manual lookup. |
-
-**Copilot findings and final decisions:** Add the exact issues Copilot flags, mark each Accepted or Rejected, and explain why. Do not claim the preliminary notes are Copilot findings.
+| US-04 did not define what counts as a blank name or what happens for invalid submissions. | Accepted | Whitespace-only names and empty orders have explicit validation text, and the criteria state that no order is created. |
+| US-06 said an invalid change is rejected without specifying user-visible feedback. | Accepted | The Ready status must remain unchanged, and the board must display an exact message that can be checked. |
+| US-07 did not state the resulting status or observable response when skipping a status step. | Accepted | The Received status must remain unchanged, and the board must display an exact rejection message. |
+| US-08 used “valid” and “helpful” without defining the cases or outcomes. | Accepted | The criteria define an existing order number, the possible displayed statuses, the not-found result, and the empty-input result with exact messages. |
 
 ## Repository submission checklist
 
 - Save this backlog as `USER_STORIES.md` at the repository root.
-- Run the review prompt in Copilot Chat and complete the AI log with its actual findings.
+- Verify the AI Log records the review findings, decisions and reasons.
 - Commit and push to `main`.
 - Submit the repository URL and the matching PDF to Online Campus.
