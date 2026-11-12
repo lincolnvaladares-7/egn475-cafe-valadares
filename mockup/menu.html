@@ -1,1 +1,116 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Menu | Café Calle Ocho</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"></head><body><header class="container"><nav><ul><li><strong>Café Calle Ocho</strong></li></ul><ul><li><a href="menu.html">Menu</a></li><li><a href="order.html">Your order</a></li><li><a href="kitchen.html">Kitchen</a></li><li><a href="history.html">History</a></li><li><a href="admin.html">Admin</a></li></ul></nav></header><main class="container"><h1>Menu</h1><p>Browse menu and add items</p><p><strong>Categories:</strong> Hot Drinks · Bakery · Snacks</p><figure><table><thead><tr><th>Item / order</th><th>Details</th><th>Price / status</th><th>Action</th></tr></thead><tbody><tr><td>Hot Drinks</td><td>Café con leche</td><td>$3.50</td><td><a href="order.html" role="button" class="outline secondary">Open</a></td></tr><tr><td>Hot Drinks</td><td>Cortadito</td><td>$2.75</td><td><a href="order.html" role="button" class="outline secondary">Open</a></td></tr><tr><td>Bakery</td><td>Guava pastry</td><td>$3.25</td><td><a href="order.html" role="button" class="outline secondary">Open</a></td></tr><tr><td>Snacks</td><td>Cuban sandwich</td><td>$9.50</td><td><a href="order.html" role="button" class="outline secondary">Open</a></td></tr></tbody></table></figure><p><a href="order.html" role="button">View order</a></p></main><footer class="container"><small>Static classroom prototype · No backend, JavaScript, or persistent storage</small></footer></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu | Café Calle Ocho</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  </head>
+  <body>
+    <header class="container">
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><strong>Café Calle Ocho</strong></li>
+        </ul>
+        <ul>
+          <li><a href="menu.html" aria-current="page">Menu</a></li>
+          <li><a href="order.html">Your order</a></li>
+          <li><a href="kitchen.html">Kitchen</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <h1>Menu</h1>
+      <p>Browse our café favorites and prepare your order.</p>
+
+      <nav aria-label="Menu categories">
+        <ul>
+          <li><a href="#hot-drinks">Hot Drinks</a></li>
+          <li><a href="#bakery">Bakery</a></li>
+          <li><a href="#snacks">Snacks</a></li>
+        </ul>
+      </nav>
+
+      <section id="hot-drinks" aria-labelledby="hot-drinks-heading">
+        <h2 id="hot-drinks-heading">Hot Drinks</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Details</th>
+              <th scope="col">Price</th>
+              <th scope="col">Order</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Café con leche</td>
+              <td>Classic Cuban-style espresso with steamed milk</td>
+              <td>$3.50</td>
+              <td><a href="order.html" role="button" class="outline secondary">Select</a></td>
+            </tr>
+            <tr>
+              <td>Cortadito</td>
+              <td>Small espresso with a touch of sweetened condensed milk</td>
+              <td>$2.75</td>
+              <td><a href="order.html" role="button" class="outline secondary">Select</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="bakery" aria-labelledby="bakery-heading">
+        <h2 id="bakery-heading">Bakery</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Details</th>
+              <th scope="col">Price</th>
+              <th scope="col">Order</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Guava pastry</td>
+              <td>Flaky pastry filled with guava paste</td>
+              <td>$3.25</td>
+              <td><a href="order.html" role="button" class="outline secondary">Select</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="snacks" aria-labelledby="snacks-heading">
+        <h2 id="snacks-heading">Snacks</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Details</th>
+              <th scope="col">Price</th>
+              <th scope="col">Order</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cuban sandwich</td>
+              <td>Roasted pork, ham, Swiss cheese, pickles, and mustard on pressed bread</td>
+              <td>$9.50</td>
+              <td><a href="order.html" role="button" class="outline secondary">Select</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <p><a href="order.html" role="button">View order</a></p>
+    </main>
+
+    <footer class="container">
+      <small>Static classroom prototype · No backend, JavaScript, or persistent storage</small>
+    </footer>
+  </body>
+</html>
