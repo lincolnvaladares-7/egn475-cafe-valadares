@@ -26,14 +26,20 @@ def index():
 def menu():
     return render_template("menu.html", items=SAMPLE_ITEMS)
 
+
 @app.route("/menu/<int:item_id>")
 def item_detail(item_id):
+    if item_id < 1:
+        abort(404)
+
     item = next(
         (i for i in SAMPLE_ITEMS if i["id"] == item_id),
         None
     )
+
     if item is None:
         abort(404)
+
     return render_template("item.html", item=item)
 
 @app.route("/order/new")
