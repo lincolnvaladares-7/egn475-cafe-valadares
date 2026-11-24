@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+
+{% block title %}Kitchen Board{% endblock %}
+
+{% block content %}
+<h1>Kitchen Board</h1>
+
+{% for order in orders %}
+<article>
+    <h3>Order #{{ order.id }}</h3>
+
+    <p>Customer: {{ order.customer }}</p>
+    <p>Item: {{ order.item }}</p>
+
+    {% if order.status == "Completed" %}
+        <mark>Completed</mark>
+    {% elif order.status == "Preparing" %}
+        <strong>Preparing</strong>
+    {% else %}
+        <p>Pending</p>
+    {% endif %}
+</article>
+{% endfor %}
+
+{% endblock %}

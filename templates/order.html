@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+
+{% block title %}Place an Order{% endblock %}
+
+{% block content %}
+<h1>Place an Order</h1>
+
+<form>
+    <label>Customer Name
+        <input type="text" name="customer" required>
+    </label>
+
+    <label>Select Item
+        <select name="item">
+            {% for item in items %}
+            <option value="{{ item.id }}">
+                {{ item.name }} -
+                ${{ "%.2f"|format(item.price_cents / 100) }}
+            </option>
+            {% endfor %}
+        </select>
+    </label>
+
+    <label>Quantity
+        <input type="number" name="quantity" min="1" value="1">
+    </label>
+
+    <button type="button" disabled>Submit Order</button>
+
+    <small>Order saving will be available in Week 4.</small>
+</form>
+{% endblock %}
