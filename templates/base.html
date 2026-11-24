@@ -13,11 +13,11 @@
             <li><strong>Cafe Calle Ocho</strong></li>
         </ul>
         <ul>
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('menu') }}">Menu</a></li>
-            <li><a href="{{ url_for('new_order') }}">Order</a></li>
-            <li><a href="{{ url_for('kitchen') }}">Kitchen</a></li>
-            <li><a href="{{ url_for('orders') }}">History</a></li>
+            <li><a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}aria-current="page"{% endif %}>Home</a></li>
+            <li><a href="{{ url_for('menu') }}" {% if request.endpoint in ['menu', 'item_detail'] %}aria-current="page"{% endif %}>Menu</a></li>
+            <li><a href="{{ url_for('new_order') }}" {% if request.endpoint == 'new_order' %}aria-current="page"{% endif %}>Order</a></li>
+            <li><a href="{{ url_for('kitchen') }}" {% if request.endpoint == 'kitchen' %}aria-current="page"{% endif %}>Kitchen</a></li>
+            <li><a href="{{ url_for('orders') }}" {% if request.endpoint == 'orders' %}aria-current="page"{% endif %}>History</a></li>
         </ul>
     </nav>
 
